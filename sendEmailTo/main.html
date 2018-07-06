@@ -106,13 +106,13 @@
         console.log(url);
 
         Email.sendWithAttachment(
-                "ivaderlab.unist@gmail.com",    //"from@you.com",
-                "ivaderlab.unist@gmail.com",    //"to@them.com",
+                "*",    //"from@you.com",
+                "*",    //"to@them.com",
                 "HI2 is it working?",           //     "Subject",
                 "this is fucking hot mail test",//     "Body",
-                "smtp.gmail.com",               //     "host.yourisp.com",
-                "ivaderlab.unist@gmail.com",    //     "username",
-                "ivaderlab.unist.ac.kr",        //     "password",
+                "*",               //     "host.yourisp.com",
+                "*",    //     "username",
+                "*",        //     "password",
                 url,                //   "attachment"
                 function done(message) {console.log(message); alert("보고서");}
             );
