@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://smtpjs.com/v2/smtp.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src='./js/pdfmake.min.js'></script>
+    <script src='./js/vfs_fonts.js'></script>
+
+</head>
+<body>
+
+<h1>SMTPJS Test</h1>
+<script>
+    // import * as pdfmake from 'pdfmake/build/pdfmake.js';
+    // import pdfFonts from "pdfmake/build/vfs_fonts";
+    // pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+
+    var result_content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam lectus elit, quis consequat neque aliquam sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus vehicula eleifend orci mattis vulputate. Duis nec auctor dui, non condimentum diam. Integer libero lacus, dictum id gravida et, tincidunt quis lectus. Etiam vel orci feugiat, condimentum mi ac, volutpat ligula. Cras laoreet risus non sodales convallis.\n" +
+        "\n" +
+        "Praesent laoreet id augue at posuere. Etiam malesuada eros tincidunt purus laoreet, in pulvinar metus aliquam. Vestibulum ultrices hendrerit augue et rhoncus. Aliquam gravida neque id odio molestie, ut vehicula ante lacinia. Etiam pellentesque efficitur felis, vitae pellentesque orci faucibus ac. Ut et est at eros congue iaculis et vitae magna. Suspendisse potenti.\n" +
+        "\n" +
+        "Sed fringilla facilisis placerat. Donec bibendum ipsum sapien, quis finibus ligula rhoncus sed. Sed id lacus felis. Vivamus gravida ligula eget auctor laoreet. Fusce a scelerisque turpis. Praesent consectetur mattis purus. Donec sit amet mattis massa, a fermentum lacus. Maecenas fermentum ac risus ut suscipit. Sed vitae consequat leo. Nunc malesuada, nibh sit amet pretium dapibus, nisl ante accumsan elit, viverra venenatis sapien urna sit amet nunc. Aliquam sit amet dapibus turpis. Duis ultricies dui nulla, non tristique odio eleifend non. Praesent quis ex massa. Pellentesque vulputate pulvinar enim quis cursus. Aenean porta, nisi a condimentum dapibus, ex lorem dictum velit, eleifend suscipit lectus justo non nisl. Praesent et sem quis lectus dignissim eleifend non a felis.\n" +
+        "\n" +
+        "Ut facilisis ut nulla sit amet accumsan. Sed pharetra efficitur rutrum. Donec sem enim, faucibus at lorem vel, hendrerit fermentum risus. Vestibulum felis libero, varius ut maximus sed, maximus vel mi. Pellentesque rutrum sem mauris, pharetra porttitor tellus rhoncus suscipit. Sed et imperdiet sem, sit amet volutpat nulla. Fusce id iaculis arcu, dapibus pulvinar ipsum.\n" +
+        "\n" +
+        "Pellentesque non commodo metus, sed posuere ante. Pellentesque imperdiet arcu vitae arcu tempus ultrices. Nunc interdum purus id sapien finibus, ac malesuada nibh tincidunt. Aliquam hendrerit orci sit amet nisl ornare laoreet. Praesent volutpat mauris quis mi accumsan, vitae imperdiet dui semper. Donec convallis felis eu lacinia accumsan. Vivamus placerat in dolor et euismod. Phasellus turpis metus, aliquet et faucibus vel, vestibulum quis leo. Aliquam sit amet purus ac arcu posuere suscipit id non lectus. Integer viverra lacus in mauris fermentum auctor.";
+
+
+    var log_data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur interdum quam a commodo tempor. Cras sit amet quam ac massa interdum varius. Etiam vel ante turpis. Quisque efficitur tortor et purus fermentum hendrerit. Aenean ut odio eget tortor iaculis viverra. Aenean rhoncus rhoncus neque, id sodales lorem congue quis. Nulla fermentum lorem vel mollis tincidunt. Quisque metus lorem, ornare non vestibulum et, suscipit vitae risus. Fusce mauris quam, laoreet sit amet convallis vel, volutpat nec quam. Donec risus tortor, ultricies et risus vel, aliquet feugiat mauris. Nam et purus dolor. Ut augue ipsum, dapibus ac purus non, mattis interdum lorem.\n" +
+        "\n" +
+        "Vestibulum placerat augue leo, ut aliquam nunc convallis non. In hac habitasse platea dictumst. Pellentesque luctus, lacus quis lacinia sollicitudin, lorem nibh mollis leo, aliquam finibus sapien purus non dolor. Etiam interdum turpis a orci convallis interdum. Nam gravida mauris urna, eget pharetra magna vulputate eu. Cras eu ultricies tortor, a bibendum dolor. Ut vel augue sit amet orci varius auctor non porttitor mauris. Aenean maximus arcu quis cursus laoreet. Fusce tellus nisl, cursus volutpat diam vitae, aliquet accumsan odio. Praesent non dapibus augue.";
+
+
+
+    var docDefinition = { content: [
+            {
+                text: 'Report',
+                style: 'header'
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [50, '*', 50,'*'],
+                    height: [20, 20, 60],
+                    headerRows: 1,
+                    body: [
+                        [{text: 'row1', style: 'tableHeader',  alignment: 'center'},  {text: 'content1', colSpan:3, alignment: 'center'},{},{}],
+                        [{text: 'row2', style: 'tableHeader',  alignment: 'center'}, {text: 'content2',  alignment: 'center'},
+                            {text: 'row2', style: 'tableHeader',alignment: 'center'}, {text: 'content3',  alignment: 'center'}],
+                        [{text: 'row3',style: 'tableHeader',alignment: 'center'},{text: 'content4', colSpan: 3,  alignment: 'center'},{},{}]
+                    ]
+                }
+
+
+            },
+            // {
+            //     image: imageURL,
+            // },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [50, '*'],
+                    height: [20, 20, 500],
+                    headerRows: 1,
+                    body: [
+                        [  {text: 'Result', colSpan:2, alignment: 'center'},{}],
+                        [{text: 'row2', style: 'tableHeader',  alignment: 'center'}, {text: 'content2'}],
+                        [{text: 'row3',style: 'tableHeader', alignment: 'center'},{text: result_content}]
+                    ]
+                }
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [50, '*'],
+                    height: [200],
+                    headerRows: 1,
+                    body: [
+                        [{text: 'row2', style: 'tableHeader',  alignment: 'center'}, {text: log_data}]
+                    ]
+                }
+            }
+        ],
+        styles:{
+            header: {
+                fontSize: 22,
+                bold: true,
+                alignment: 'center'
+            },
+            tableExample: {
+                margin: [0, 5, 0, 15]
+            },
+            tableHeader: {
+                bold: true,
+                fontSize: 13,
+                color: 'black'
+            }
+        }
+    };
+    var data = pdfMake.createPdf(docDefinition);
+    data.getDataUrl(function(url){
+
+        console.log(url);
+
+        Email.sendWithAttachment(
+                "ivaderlab.unist@gmail.com",    //"from@you.com",
+                "ivaderlab.unist@gmail.com",    //"to@them.com",
+                "HI2 is it working?",           //     "Subject",
+                "this is fucking hot mail test",//     "Body",
+                "smtp.gmail.com",               //     "host.yourisp.com",
+                "ivaderlab.unist@gmail.com",    //     "username",
+                "ivaderlab.unist.ac.kr",        //     "password",
+                url,                //   "attachment"
+                function done(message) {console.log(message); alert("보고서");}
+            );
+
+    });
+</script>
+</body>
+
+
+</html>
